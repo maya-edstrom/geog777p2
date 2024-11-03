@@ -105,26 +105,30 @@
 
       // Add LayerList widget
       const layerList = new LayerList({
-        view: view
+        view: view,
+        listItemCreatedFunction: function(event) {
+          const item = event.item;
+          const layer = item.layer;
+
+          // Create a legend for each layer
+          const legend = new Legend({
+            view: view,
+            layerInfos: [{
+              layer: layer,
+              title: ""
+            }]
+          });
+
+          // Add the legend to the list item
+          item.panel = {
+            content: legend.domNode,
+            open: false
+          };
+        }
       });
 
       // Add the LayerList widget to the custom div
       layerList.container = document.getElementById("layerListDiv");
-
-      // Add Legend widget
-      const legend = new Legend({
-        view: view
-      });
-
-      const legendExpand = new Expand({
-        view: view,
-        content: legend,
-        expandIconClass: "esri-icon-legend" // Optional, adds a custom icon to the expand widget
-      });
-
-      view.ui.add(legendExpand, {
-        position: "bottom-right"
-      });
     });
   </script>
 </body>
