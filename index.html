@@ -9,11 +9,17 @@
   <link rel="stylesheet" href="https://js.arcgis.com/4.30/esri/themes/light/main.css">
   <link rel="stylesheet" href="style.css">
   <style>
-    html, body, #viewDiv {
+    html, body {
       padding: 0;
       margin: 0;
       height: 100%;
       width: 100%;
+    }
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 80%; /* 80% of the viewport height */
+      width: 60%;  /* 80% of the viewport width */
     }
   </style>
 </head>
