@@ -24,10 +24,17 @@
       height: 90%;
       width: 90%;  
     }
+    #toggleLayer {
+      margin: 10px;
+    }
   </style>
 </head>
 <body>
   <h1>Minneapolis Chain of Lakes Regional Park</h1>
+  <div id="toggleLayer">
+    <input type="checkbox" id="layerCheckbox" checked>
+    <label for="layerCheckbox">Toggle Parks Layer</label>
+  </div>
   <div id="viewDiv"></div>
   <script src="https://js.arcgis.com/4.30/"></script>
   <script>
@@ -69,6 +76,12 @@
       });
 
       map.add(featureLayer);
+
+      // Toggle Feature Layer Visibility
+      const layerCheckbox = document.getElementById("layerCheckbox");
+      layerCheckbox.addEventListener("change", function() {
+        featureLayer.visible = layerCheckbox.checked;
+      });
     });
   </script>
 </body>
