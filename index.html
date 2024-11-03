@@ -23,21 +23,38 @@
       align-items: center;
       width: 100%;
       padding: 10px 0;
+      font-size: 1.5em; /* Adjust font size for better readability on mobile */
     }
     #container {
       display: flex;
+      flex-direction: column; /* Stack elements vertically on small screens */
       height: 100%;
       width: 100%;
     }
     #layerListDiv {
-      width: 25%; 
+      width: 100%; /* Full width on small screens */
       padding: 10px;
       box-sizing: border-box;
       overflow-y: auto;
+      order: 2; /* Move below the map on small screens */
     }
     #viewDiv {
-      width: 75%; 
+      width: 100%; /* Full width on small screens */
       height: 100%;
+      order: 1; /* Move above the layer list on small screens */
+    }
+    @media (min-width: 768px) {
+      #container {
+        flex-direction: row; /* Side by side layout on larger screens */
+      }
+      #layerListDiv {
+        width: 25%; /* 1/4 of the screen on larger screens */
+        order: 1; /* Move to the left on larger screens */
+      }
+      #viewDiv {
+        width: 75%; /* 3/4 of the screen on larger screens */
+        order: 2; /* Move to the right on larger screens */
+      }
     }
   </style>
 </head>
@@ -64,7 +81,7 @@
       "esri/symbols/SimpleLineSymbol"
     ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend, SimpleRenderer, SimpleFillSymbol, SimpleLineSymbol) {
       const map = new Map({
-        basemap: "gray-vector"
+        basemap: "streets"
       });
 
       const view = new MapView({
