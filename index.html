@@ -88,7 +88,13 @@
         view: view
       });
 
-      view.ui.add(layerList, {
+      const layerListExpand = new Expand({
+        view: view,
+        content: layerList,
+        expandIconClass: "esri-icon-layer-list" // Optional, adds a custom icon to the expand widget
+      });
+
+      view.ui.add(layerListExpand, {
         position: "top-left"
       });
 
@@ -100,7 +106,7 @@
       const legendExpand = new Expand({
         view: view,
         content: legend,
-        expandIconClass: "esri-icon-layer-list" // Optional, adds a custom icon to the expand widget
+        expandIconClass: "esri-icon-legend" // Optional, adds a custom icon to the expand widget
       });
 
       view.ui.add(legendExpand, {
