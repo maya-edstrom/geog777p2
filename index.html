@@ -65,12 +65,23 @@
         position: "top-right"
       });
 
-      // Add Feature Layer
-      const featureLayer = new FeatureLayer({
-        url: "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Parks/FeatureServer",
+      // Add Feature Layers
+      const parksLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Minneapolis_Chain_of_Lakes_Regional_Park/FeatureServer",
+        title: "Parks"
       });
 
-      map.add(featureLayer);
+      const trailsLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Walking_and_Biking_Trails/FeatureServer",
+        title: "Walking and Biking Trails"
+      });
+
+      const waterBodiesLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Minneapolis_Chain_of_Lakes_Regional_Park_Water/FeatureServer",
+        title: "Water Bodies"
+      });
+
+      map.addMany([parksLayer, trailsLayer, waterBodiesLayer]);
 
       // Add LayerList widget
       const layerList = new LayerList({
