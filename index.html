@@ -22,5 +22,19 @@
   <div id="viewDiv"></div>
   <script src="https://js.arcgis.com/4.30/"></script>
   <script src="main.js"></script>
+  <script>
+    require(["esri/Map", "esri/views/MapView"], function (Map, MapView) {
+      const map = new Map({
+        basemap: "gray-vector"
+      });
+
+      const view = new MapView({
+        container: "viewDiv",
+        map: map,
+        zoom: 10,
+        center: [-87.68914385791143, 41.85978190876079] // longitude, latitude
+      });
+    });
+  </script>
 </body>
 </html>
