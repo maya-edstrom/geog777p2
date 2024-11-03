@@ -36,8 +36,10 @@
       "esri/views/MapView", 
       "esri/widgets/BasemapGallery",
       "esri/widgets/Expand",
-      "esri/layers/FeatureLayer"
-    ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer) {
+      "esri/layers/FeatureLayer",
+      "esri/widgets/LayerList",
+      "esri/widgets/Legend"
+    ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend) {
       const map = new Map({
         basemap: "streets"
       });
@@ -69,6 +71,24 @@
       });
 
       map.add(featureLayer);
+
+      // Add LayerList widget
+      const layerList = new LayerList({
+        view: view
+      });
+
+      view.ui.add(layerList, {
+        position: "top-left"
+      });
+
+      // Add Legend widget
+      const legend = new Legend({
+        view: view
+      });
+
+      view.ui.add(legend, {
+        position: "bottom-right"
+      });
     });
   </script>
 </body>
