@@ -35,8 +35,9 @@
       "esri/Map", 
       "esri/views/MapView", 
       "esri/widgets/BasemapGallery",
-      "esri/widgets/Expand"
-    ], function (Map, MapView, BasemapGallery, Expand) {
+      "esri/widgets/Expand",
+      "esri/layers/FeatureLayer"
+    ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer) {
       const map = new Map({
         basemap: "streets"
       });
@@ -61,6 +62,13 @@
       view.ui.add(expand, {
         position: "top-right"
       });
+
+      // Add Feature Layer
+      const featureLayer = new FeatureLayer({
+        url: "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Parks/FeatureServer",
+      });
+
+      map.add(featureLayer);
     });
   </script>
 </body>
