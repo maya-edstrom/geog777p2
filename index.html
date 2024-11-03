@@ -17,25 +17,34 @@
       display: flex;
       flex-direction: column; /* Align items vertically */
     }
+    #titleContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      padding: 10px 0;
+    }
     #container {
       display: flex;
       height: 100%;
       width: 100%;
     }
     #layerListDiv {
-      width: 33.33%; /* 1/3 of the screen */
+      width: 25%; 
       padding: 10px;
       box-sizing: border-box;
       overflow-y: auto;
     }
     #viewDiv {
-      width: 66.67%; /* 2/3 of the screen */
+      width: 75%; 
       height: 100%;
     }
   </style>
 </head>
 <body>
-  <h1>Minneapolis Chain of Lakes Regional Park</h1>
+  <div id="titleContainer">
+    <h1>Minneapolis Chain of Lakes Regional Park</h1>
+  </div>
   <div id="container">
     <div id="layerListDiv"></div>
     <div id="viewDiv"></div>
