@@ -58,8 +58,11 @@
       "esri/widgets/Expand",
       "esri/layers/FeatureLayer",
       "esri/widgets/LayerList",
-      "esri/widgets/Legend"
-    ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend) {
+      "esri/widgets/Legend",
+      "esri/renderers/SimpleRenderer",
+      "esri/symbols/SimpleFillSymbol",
+      "esri/symbols/SimpleLineSymbol"
+    ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend, SimpleRenderer, SimpleFillSymbol, SimpleLineSymbol) {
       const map = new Map({
         basemap: "streets"
       });
@@ -85,20 +88,51 @@
         position: "top-right"
       });
 
-      // Add Feature Layers
+      // Define custom renderers for each layer
+      const parksRenderer = new SimpleRenderer({
+        symbol: new SimpleFillSymbol({
+          color: [34, 139, 34, 0.5], // Green color with 50% opacity
+          outline: {
+            color: [34, 139, 34, 1], // Green outline
+            width: 1
+          }
+        })
+      });
+
+      const trailsRenderer = new SimpleRenderer({
+        symbol: new SimpleLineSymbol({
+          color: [255, 140, 0, 1], // Orange color
+          width: 2
+        })
+      });
+
+      const lakesRenderer = new SimpleRenderer({
+        symbol: new SimpleFillSymbol({
+          color: [0, 0, 255, 0.5], // Blue color with 50% opacity
+          outline: {
+            color: [0, 0, 255, 1], // Blue outline
+            width: 1
+          }
+        })
+      });
+
+      // Add Feature Layers with custom renderers
       const parksLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Minneapolis_Chain_of_Lakes_Regional_Park/FeatureServer",
-        title: "Parks"
+        title: "Parks",
+        renderer: parksRenderer
       });
 
       const trailsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Walking_and_Biking_Trails/FeatureServer",
-        title: "Walking and Biking Trails"
+        title: "Walking and Biking Trails",
+        renderer: trailsRenderer
       });
 
       const waterBodiesLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Minneapolis_Chain_of_Lakes_Regional_Park_Water/FeatureServer",
-        title: "Water Bodies"
+        title: "Water Bodies",
+        renderer: lakesRenderer
       });
 
       map.addMany([parksLayer, trailsLayer, waterBodiesLayer]);
