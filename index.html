@@ -55,13 +55,13 @@
         view: view
       });
 
-      const expand = new Expand({
+      const basemapExpand = new Expand({
         view: view,
         content: basemapGallery,
         expandIconClass: "esri-icon-basemap" // Optional, adds a custom icon to the expand widget
       });
 
-      view.ui.add(expand, {
+      view.ui.add(basemapExpand, {
         position: "top-right"
       });
 
@@ -97,7 +97,13 @@
         view: view
       });
 
-      view.ui.add(legend, {
+      const legendExpand = new Expand({
+        view: view,
+        content: legend,
+        expandIconClass: "esri-icon-layer-list" // Optional, adds a custom icon to the expand widget
+      });
+
+      view.ui.add(legendExpand, {
         position: "bottom-right"
       });
     });
