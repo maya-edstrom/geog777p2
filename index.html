@@ -111,6 +111,7 @@
       "esri/layers/FeatureLayer",
       "esri/widgets/LayerList",
       "esri/widgets/Legend",
+      "esri/widgets/Directions",
       "esri/renderers/SimpleRenderer",
       "esri/symbols/SimpleFillSymbol",
       "esri/symbols/SimpleLineSymbol"
@@ -215,6 +216,23 @@
 
       // Add the LayerList widget to the custom div
       layerList.container = document.getElementById("layerListDiv");
+
+     // Add Directions widget
+     const directionsWidget = new Directions({  
+        view: view,
+        routeServiceUrl: "https://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World",
+        travelMode: "walking" // Set the travel mode to walking or biking
+      });
+
+      const directionsExpand = new Expand({  
+        view: view,
+        content: directionsWidget,
+        expandIconClass: "esri-icon-directions" // Optional, adds a custom icon to the expand widget
+      });
+
+      view.ui.add(directionsExpand, {  
+        position: "top-left"
+      }); 
     });
   </script>
 </body>
