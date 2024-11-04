@@ -27,7 +27,7 @@
       text-align: center; /* Center text */
       background-image: url('https://uw-mad.maps.arcgis.com/sharing/rest/content/items/11af2c3d6ab7469a8af57f88da683470/data'); 
       background-size: cover; /* Cover the entire container */
-      background-position: none;/* Center the image */
+      background-position: bottom right;
       background-repeat: no-repeat; /* Do not repeat the image */
       color: white; /* Change text color for better contrast */
     }
@@ -51,6 +51,7 @@
       width: 100%; /* Full width on small screens */
       height: 100%;
       order: 1; /* Move above the layer list on small screens */
+      position: relative; /* Position relative to place the button inside */
     }
     @media (min-width: 768px) {
       #container {
@@ -71,6 +72,23 @@
         padding: 5px 0; /* Adjust padding for better centering */
       }
     }
+    #externalLinkButton {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+    #externalLinkButton:hover {
+      background-color: #8ae246;
+    }
   </style>
 </head>
 <body>
@@ -79,7 +97,9 @@
   </div>
   <div id="container">
     <div id="layerListDiv"></div>
-    <div id="viewDiv"></div>
+    <div id="viewDiv">
+      <a id="externalLinkButton" href="https://www.minneapolisparks.org/parks-destinations/parks-lakes/minneapolis_chain_of_lakes_regional_park/" target="_blank">More information</a>
+    </div>
   </div>
   <script src="https://js.arcgis.com/4.30/"></script>
   <script>
