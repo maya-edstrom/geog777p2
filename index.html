@@ -88,7 +88,7 @@
       "esri/symbols/SimpleLineSymbol"
     ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend, SimpleRenderer, SimpleFillSymbol, SimpleLineSymbol) {
       const map = new Map({
-        basemap: "gray"
+        basemap: "grey"
       });
 
       const view = new MapView({
@@ -115,9 +115,9 @@
       // Define custom renderers for each layer
       const parksRenderer = new SimpleRenderer({
         symbol: new SimpleFillSymbol({
-          color: [34, 139, 34, 0.5], // Green color with 50% opacity
+          color: [131, 176, 90, 0.5], // Green color with 50% opacity
           outline: {
-            color: [34, 139, 34, 1], // Green outline
+            color: [131, 176, 90], // Green outline
             width: 1
           }
         })
