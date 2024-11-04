@@ -78,7 +78,7 @@
       right: 10px;
       padding: 10px 20px;
       font-size: 1em;
-      background-color: #414142;
+      background-color: #007acc;
       color: white;
       border: none;
       border-radius: 5px;
@@ -87,7 +87,7 @@
       display: inline-block;
     }
     #externalLinkButton:hover {
-      background-color: #afc716;
+      background-color: #005f99;
     }
   </style>
 </head>
@@ -98,7 +98,7 @@
   <div id="container">
     <div id="layerListDiv"></div>
     <div id="viewDiv">
-      <a id="externalLinkButton" href="https://www.minneapolisparks.org/parks-destinations/parks-lakes/minneapolis_chain_of_lakes_regional_park/" target="https://www.minneapolisparks.org/parks-destinations/parks-lakes/minneapolis_chain_of_lakes_regional_park/">More park information</a>
+      <a id="externalLinkButton" href="https://www.minneapolisparks.org/parks-destinations/parks-lakes/minneapolis_chain_of_lakes_regional_park/" target="_blank">More park information</a>
     </div>
   </div>
   <script src="https://js.arcgis.com/4.30/"></script>
@@ -111,6 +111,7 @@
       "esri/layers/FeatureLayer",
       "esri/widgets/LayerList",
       "esri/widgets/Legend",
+      "esri/widgets/Directions",
       "esri/renderers/SimpleRenderer",
       "esri/symbols/SimpleFillSymbol",
       "esri/symbols/SimpleLineSymbol"
@@ -168,23 +169,42 @@
         })
       });
 
-      // Add Feature Layers with custom renderers
+      // Define popup templates for each layer
+      const parksPopupTemplate = {
+        title: "{Name}", // Field name for the park name
+        content: "Park Name: {Name}"
+      };
+
+      const trailsPopupTemplate = {
+        title: "{Name}", // Field name for the trail name
+        content: "Trail Name: {Name}"
+      };
+
+      const lakesPopupTemplate = {
+        title: "{Name}", // Field name for the water body name
+        content: "Water Body Name: {Name}"
+      };
+
+      // Add Feature Layers with custom renderers and popup templates
       const parksLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Minneapolis_Chain_of_Lakes_Regional_Park/FeatureServer",
         title: "Parks",
-        renderer: parksRenderer
+        renderer: parksRenderer,
+        popupTemplate: parksPopupTemplate
       });
 
       const trailsLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Walking_and_Biking_Trails/FeatureServer",
         title: "Walking and Biking Trails",
-        renderer: trailsRenderer
+        renderer: trailsRenderer,
+        popupTemplate: trailsPopupTemplate
       });
 
       const waterBodiesLayer = new FeatureLayer({
         url: "https://services.arcgis.com/HRPe58bUyBqyyiCt/arcgis/rest/services/Minneapolis_Chain_of_Lakes_Regional_Park_Water/FeatureServer",
         title: "Water Bodies",
-        renderer: lakesRenderer
+        renderer: lakesRenderer,
+        popupTemplate: lakesPopupTemplate
       });
 
       map.addMany([parksLayer, trailsLayer, waterBodiesLayer]);
