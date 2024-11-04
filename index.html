@@ -25,6 +25,11 @@
       padding: 10px 0;
       font-size: 1.5em; /* Default font size */
       text-align: center; /* Center text */
+      background-image: url('https://uw-mad.maps.arcgis.com/sharing/rest/content/items/11af2c3d6ab7469a8af57f88da683470/data'); 
+      background-size: cover; /* Cover the entire container */
+      background-position: center; /* Center the image */
+      background-repeat: no-repeat; /* Do not repeat the image */
+      color: white; /* Change text color for better contrast */
     }
     #container {
       display: flex;
@@ -88,7 +93,7 @@
       "esri/symbols/SimpleLineSymbol"
     ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend, SimpleRenderer, SimpleFillSymbol, SimpleLineSymbol) {
       const map = new Map({
-        basemap: "gray"
+        basemap: "gray" // Corrected basemap name
       });
 
       const view = new MapView({
