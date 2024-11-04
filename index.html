@@ -23,7 +23,7 @@
       align-items: center;
       width: 100%;
       padding: 10px 0;
-      font-size: 1.5em; /* Adjust font size for better readability on mobile */
+      font-size: 1.5em; /* Default font size */
     }
     #container {
       display: flex;
@@ -56,6 +56,11 @@
         order: 2; /* Move to the right on larger screens */
       }
     }
+    @media (max-width: 767px) {
+      #titleContainer {
+        font-size: 1.2em; /* Smaller font size on mobile devices */
+      }
+    }
   </style>
 </head>
 <body>
@@ -81,7 +86,7 @@
       "esri/symbols/SimpleLineSymbol"
     ], function (Map, MapView, BasemapGallery, Expand, FeatureLayer, LayerList, Legend, SimpleRenderer, SimpleFillSymbol, SimpleLineSymbol) {
       const map = new Map({
-        basemap: "gray-vector"
+        basemap: "streets"
       });
 
       const view = new MapView({
